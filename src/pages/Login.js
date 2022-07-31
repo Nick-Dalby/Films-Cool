@@ -1,13 +1,37 @@
 import { useState, useEffect } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { login, reset } from '../features/auth/authSlice'
+import Spinner from '../components/Spinner'
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
+    Username: '',
+    Password: '',
   })
 
-  const { username, password } = formData
+  const { Username, Password } = formData
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  )
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }
+
+    if (isSuccess || user) {
+      navigate('/')
+    }
+
+    dispatch(reset())
+  }, [user, isError, isSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -19,6 +43,17 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault()
     console.log(formData)
+
+    const userData = {
+      Username,
+      Password,
+    }
+
+    dispatch(login(userData))
+  }
+
+  if (isLoading) {
+    return <Spinner />
   }
 
   return (
@@ -34,9 +69,9 @@ const Login = () => {
             <input
               type="text"
               className="form-control"
-              id="username"
-              name="username"
-              value={username}
+              id="Username"
+              name="Username"
+              value={Username}
               placeholder="enter a username"
               onChange={onChange}
             />
@@ -46,9 +81,9 @@ const Login = () => {
             <input
               type="password"
               className="form-control"
-              id="password"
-              name="password"
-              value={password}
+              id="Password"
+              name="Password"
+              value={Password}
               placeholder="enter a password"
               onChange={onChange}
             />

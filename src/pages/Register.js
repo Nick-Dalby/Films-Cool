@@ -1,15 +1,39 @@
 import { useState, useEffect } from 'react'
 import { FaUser } from 'react-icons/fa'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { register, reset } from '../features/auth/authSlice'
+import Spinner from '../components/Spinner'
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-    email: '',
-    birthday: '',
+    Username: '',
+    Password: '',
+    Email: '',
+    Birthday: '',
   })
 
-  const { username, password, email, birthday } = formData
+  const { Username, Password, Email, Birthday } = formData
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  )
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }
+
+    if (isSuccess || user) {
+      navigate('/')
+    }
+
+    dispatch(reset())
+  }, [user, isError, isSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -21,6 +45,23 @@ const Register = () => {
   const onSubmit = (e) => {
     e.preventDefault()
     console.log(formData)
+
+    if (Password.length < 6) {
+      toast.error('Password must be 6 characters or more')
+    } else {
+      const userData = {
+        Username,
+        Password,
+        Email,
+        Birthday,
+      }
+
+      dispatch(register(userData))
+    }
+  }
+
+  if (isLoading) {
+    return <Spinner />
   }
 
   return (
@@ -37,9 +78,9 @@ const Register = () => {
             <input
               type="text"
               className="form-control"
-              id="username"
-              name="username"
-              value={username}
+              id="Username"
+              name="Username"
+              value={Username}
               placeholder="enter a username"
               onChange={onChange}
             />
@@ -48,9 +89,9 @@ const Register = () => {
             <input
               type="email"
               className="form-control"
-              id="email"
-              name="email"
-              value={email}
+              id="Email"
+              name="Email"
+              value={Email}
               placeholder="enter your email address"
               onChange={onChange}
             />
@@ -59,9 +100,9 @@ const Register = () => {
             <input
               type="password"
               className="form-control"
-              id="password"
-              name="password"
-              value={password}
+              id="Password"
+              name="Password"
+              value={Password}
               placeholder="enter a password"
               onChange={onChange}
             />
@@ -71,9 +112,9 @@ const Register = () => {
             <input
               type="date"
               className="form-control"
-              id="birthday"
-              name="birthday"
-              value={birthday}
+              id="Birthday"
+              name="Birthday"
+              value={Birthday}
               placeholder="enter your date of birth"
               onChange={onChange}
             />
