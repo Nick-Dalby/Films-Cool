@@ -24,7 +24,7 @@ ul {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 160px 20px;
+  padding: 120px 20px;
   text-align: center;
 }
 
@@ -86,6 +86,10 @@ ul {
   margin-right: 8px;
 }
 
+.icon svg {
+  margin-right: 0px;
+}
+
 .btn-block {
   width: 100%;
   margin-bottom: 20px;
@@ -93,6 +97,13 @@ ul {
 
 .btn:hover {
   transform: scale(0.98);
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .loadingSpinnerContainer {
@@ -140,14 +151,15 @@ ul {
   }
 }
 
+
 `
 
 export const Pill = styled.div`
   background: #a7e1f8;
   border: 2px solid #000;
   border-radius: 30px;
-  height: 20px;
-  width: 20px;
+  height: 40px;
+  width: 40px;
   padding: 8px;
   align-items: center;
   justify-content: center;
