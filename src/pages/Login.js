@@ -42,7 +42,6 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(formData)
 
     const userData = {
       Username,
