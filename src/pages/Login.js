@@ -17,7 +17,7 @@ const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const { user, isLoading, isError, loginSuccess, message } = useSelector(
     (state) => state.auth
   )
 
@@ -26,12 +26,12 @@ const Login = () => {
       toast.error(message)
     }
 
-    if (isSuccess || user) {
+    if (loginSuccess) {
       navigate('/')
     }
 
     dispatch(reset())
-  }, [user, isError, isSuccess, message, navigate, dispatch])
+  }, [user, isError, loginSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
