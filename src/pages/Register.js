@@ -70,7 +70,6 @@ const Register = () => {
         <h1>
           <FaUser /> Register
         </h1>
-        <p>Please create an account</p>
       </section>
       <section className="form">
         <form onSubmit={onSubmit}>
@@ -108,7 +107,7 @@ const Register = () => {
             />
           </div>
           <div className="form-group">
-            <p>Date of birth:</p>
+            <label htmlFor="">Date of birth:</label>
             <input
               type="date"
               className="form-control"
