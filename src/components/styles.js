@@ -2,13 +2,13 @@ import styled from 'styled-components'
 import { ReactComponent as LogoSVG } from '../assets/logo.svg'
 
 export const Logo = styled(LogoSVG)`
-  height: 40px;
-  width: 270px;
+  height: 38px;
+  width: 250px;
   display: block;
 
-  @media (max-width: 800px) {
+  @media (max-width: 500px) {
     height: 33px;
-    width: 222px;
+    width: 180px;
   }
 `
 
