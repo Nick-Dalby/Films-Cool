@@ -1,8 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
+import { FaSignInAlt, FaSignOutAlt, FaUser, FaFilm } from 'react-icons/fa'
 import { Logo, HeaderContainer } from './styles'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
+
+import { useLocation } from 'react-router-dom'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -15,6 +17,10 @@ const Header = () => {
     navigate('/')
   }
 
+  const location = useLocation()
+
+  console.log(location.pathname)
+
   return (
     <HeaderContainer>
       <Link to="/">
@@ -23,24 +29,51 @@ const Header = () => {
 
       <ul>
         {user ? (
-          <li>
-            <button className="btn" onClick={onLogout}>
-              <FaSignOutAlt /> Logout
-            </button>
-          </li>
+          <>
+            {location.pathname === '/user' ? (
+              <li>
+                <Link to="/">
+                  <button className="btn icon">
+                    <FaFilm />
+                  </button>
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link to="/user">
+                  <button className="btn icon">
+                    <FaUser />
+                  </button>
+                </Link>
+              </li>
+            )}
+
+            <li>
+              <button className="btn icon" onClick={onLogout}>
+                <FaSignOutAlt />
+              </button>
+            </li>
+          </>
         ) : (
           <>
-            {' '}
-            <li>
-              <Link to="/login">
-                <FaSignInAlt /> Login
-              </Link>
-            </li>
-            <li>
-              <Link to="/register">
-                <FaUser /> Register
-              </Link>
-            </li>
+            {location.pathname === '/login' ? (
+              <li>
+                <Link to="/register">
+                  <button className="btn">
+                    <FaUser /> Register
+                  </button>
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link to="/login">
+                  <button className="btn">
+                    <FaSignInAlt />
+                    Login
+                  </button>
+                </Link>
+              </li>
+            )}
           </>
         )}
       </ul>
