@@ -10,7 +10,9 @@ import axios from 'axios'
 const UserEdit = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { user } = useSelector((state) => state.auth)
+  // const { user } = useSelector((state) => state.auth)
+  const user = JSON.parse(localStorage.getItem('user'))
+
   const token = localStorage.getItem('token')
   const formatedDOB = user.Birthday
     ? new Date(user.Birthday).toLocaleDateString('en-CA')
