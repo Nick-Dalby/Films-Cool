@@ -44,7 +44,6 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(formData)
 
     if (Password.length < 6) {
       toast.error('Password must be 6 characters or more')
