@@ -8,6 +8,8 @@ import Header from './components/Header'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import User from './components/User/User'
+import UserEdit from './components/User/UserEdit'
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/user" element={<User />} />
+          <Route path="/user/edit" element={<UserEdit />} />
         </Routes>
       </Router>
       <ToastContainer />
