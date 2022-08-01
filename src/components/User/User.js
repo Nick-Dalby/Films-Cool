@@ -1,14 +1,40 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { H2, H3, Container, P, Em } from './styles'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { logout, reset } from '../../features/auth/authSlice'
 
 const User = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const { user } = useSelector((state) => state.auth)
+  // const { user } = useSelector((state) => state.auth)
+  const user = JSON.parse(localStorage.getItem('user'))
+  const token = localStorage.getItem('token')
 
-  // need to show user info and allow editing
   // need to show list of favs
+
+  const deleteAcount = () => {
+    if (window.confirm('are you sure?')) {
+      axios
+        .delete(
+          `https://afternoon-badlands-59179.herokuapp.com/users/${user.Username}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then(() => {
+          dispatch(logout())
+          dispatch(reset())
+          navigate('/')
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }
 
   return (
     <Container>
@@ -21,7 +47,9 @@ const User = () => {
           : ''}
       </H3>
       <div className="btn-container">
-        <button className="btn">delete account</button>
+        <button className="btn" onClick={deleteAcount}>
+          delete account
+        </button>
         <Link to="/user/edit">
           <button className="btn">edit details</button>
         </Link>
