@@ -10,6 +10,8 @@ import MoviesContainer from '../components/MoviesContainer/MoviesContainer'
 import { getMovies } from '../features/movies/moviesSlice'
 
 const Dashboard = () => {
+  const { movies, isLoading } = useSelector((state) => state.movies)
+  const [filteredMovies, setFilteredMovies] = useState([])
   const [selectedMovie, setSelectedMovie] = useState(null)
   const [showPanel, setShowPanel] = useState(false)
 
@@ -17,7 +19,6 @@ const Dashboard = () => {
   const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state.auth)
-  const { movies, isLoading } = useSelector((state) => state.movies)
 
   useEffect(() => {
     if (!user) {
@@ -25,6 +26,10 @@ const Dashboard = () => {
     }
     dispatch(getMovies())
   }, [user, navigate, dispatch])
+
+  useEffect(() => {
+    setFilteredMovies(movies)
+  }, [movies])
 
   const pickMovie = (movie) => {
     setSelectedMovie(movie)
@@ -35,14 +40,30 @@ const Dashboard = () => {
     setShowPanel(false)
   }
 
+  const filterMovies = (searchTerm) => {
+    if (!searchTerm) {
+      setFilteredMovies(movies)
+    } else {
+      setFilteredMovies(
+        movies.filter((movie) => movie.Title.toLowerCase().includes(searchTerm))
+      )
+    }
+  }
+
   if (isLoading) {
     return <Spinner />
   }
 
   return (
     <div>
-      <Search />
-      <MoviesContainer pickMovie={pickMovie} isPanelOpen={showPanel} />
+      {/* call the funtion to set filtered movies from the input of the seach component */}
+      <Search filterMovies={filterMovies} />
+      {/* pass list of filtered movies as movies prop to the movies container */}
+      <MoviesContainer
+        pickMovie={pickMovie}
+        isPanelOpen={showPanel}
+        movies={filteredMovies}
+      />
 
       <Transition in={showPanel} timeout={300}>
         {(state) => (

@@ -6,7 +6,7 @@ export const SearchContainer = styled(Pill)`
   position: absolute;
   top: 120px;
   left: 30px;
-  width: ${({ $showOnDesktop }) => ($showOnDesktop ? '420px' : '20px')};
+  width: ${({ $showOnDesktop }) => ($showOnDesktop ? '420px' : '40px')};
   transition: 300ms;
 
   @media (max-width: 800px) {

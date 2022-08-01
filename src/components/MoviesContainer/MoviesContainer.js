@@ -5,11 +5,11 @@ import { debounce } from 'lodash-es'
 
 import Movie from '../Movie/Movie'
 
-const MoviesContainer = ({ pickMovie, isPanelOpen }) => {
+const MoviesContainer = ({ pickMovie, isPanelOpen, movies }) => {
   const [scroll, setScroll] = useState(0)
   const prevPanelState = useRef(false)
 
-  const { movies } = useSelector((state) => state.movies)
+  // const { movies } = useSelector((state) => state.movies)
 
   useEffect(() => {
     const handleScroll = debounce(() => {

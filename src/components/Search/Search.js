@@ -4,21 +4,20 @@ import { Close } from '../../styles'
 
 const Search = ({ filterMovies }) => {
   const inputEl = useRef(null)
-  const [showOnDesktop, setShowOnDesktop] = useState(true)
+  const [showOnDesktop, setShowOnDesktop] = useState(false)
 
   const handleChange = (event) => {
-    console.log(event.target.value)
     filterMovies(event.target.value)
   }
 
   const clearSearch = () => {
     filterMovies('')
     inputEl.current.value = ''
-    setShowOnDesktop(false)
   }
 
   const showSearch = () => {
-    setShowOnDesktop(true)
+    filterMovies('')
+    setShowOnDesktop(!showOnDesktop)
   }
 
   return (
