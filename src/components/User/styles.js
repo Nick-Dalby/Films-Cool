@@ -39,3 +39,20 @@ export const P = styled.p`
 export const Em = styled.em`
   font-style: italic;
 `
+export const MovieList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 40px;
+  grid-row-gap: 120px;
+  margin-top: 40px;
+  max-width: 1200px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 60px;
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+  }
+`
