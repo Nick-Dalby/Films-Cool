@@ -5,6 +5,7 @@ import Spinner from '../components/Spinner'
 import { Transition } from 'react-transition-group'
 import DetailsPanel from '../components/Details-Panel/DetailsPanel'
 
+import Search from '../components/Search/Search'
 import MoviesContainer from '../components/MoviesContainer/MoviesContainer'
 import { getMovies } from '../features/movies/moviesSlice'
 
@@ -40,6 +41,7 @@ const Dashboard = () => {
 
   return (
     <div>
+      <Search />
       <MoviesContainer pickMovie={pickMovie} isPanelOpen={showPanel} />
 
       <Transition in={showPanel} timeout={300}>
