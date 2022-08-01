@@ -1,9 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import moviesService from './moviesService'
 
-// get token from localStorage
-const token = localStorage.getItem('token')
-
 const initialState = {
   movies: [],
   isError: false,
@@ -15,6 +12,7 @@ const initialState = {
 // get movies
 export const getMovies = createAsyncThunk('movies/get', async (_, thunkAPI) => {
   try {
+    const token = localStorage.getItem('token')
     return await moviesService.getMovies(token)
   } catch (error) {
     const message =
