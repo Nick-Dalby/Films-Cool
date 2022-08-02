@@ -62,6 +62,7 @@ const Login = () => {
           <FaSignInAlt /> Login
         </h1>
       </section>
+
       <section className="form">
         <form onSubmit={onSubmit}>
           <div className="form-group">
@@ -95,6 +96,9 @@ const Login = () => {
           </div>
         </form>
       </section>
+      <p>use the following or complete the registration...</p>
+      <p>username: arnold</p>
+      <p>password: password</p>
     </div>
   )
 }
