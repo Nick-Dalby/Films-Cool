@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { H2, H3, Container, P, Em } from './styles'
+import { H3, Container } from './styles'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { logout, reset } from '../../features/auth/authSlice'
@@ -10,11 +10,10 @@ const User = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  // const { user } = useSelector((state) => state.auth)
   const user = JSON.parse(localStorage.getItem('user'))
   const token = localStorage.getItem('token')
 
-  // need to show list of favs
+  const { favoriteMovieArray } = useSelector((state) => state.userData)
 
   const deleteAcount = () => {
     if (window.confirm('are you sure?')) {
@@ -56,6 +55,9 @@ const User = () => {
       </div>
 
       <H3>Favorite films:</H3>
+      {favoriteMovieArray.map((movie) => (
+        <p key={movie._id}>{movie.Title}</p>
+      ))}
     </Container>
   )
 }
