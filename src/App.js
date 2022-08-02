@@ -15,14 +15,14 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Router basename="/Films-Cool">
+      <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/user/edit" element={<UserEdit />} />
+          <Route path="/Films-Cool/" element={<Dashboard />} />
+          <Route path="/Films-Cool/login" element={<Login />} />
+          <Route path="/Films-Cool/register" element={<Register />} />
+          <Route path="/Films-Cool/user" element={<User />} />
+          <Route path="/Films-Cool/user/edit" element={<UserEdit />} />
         </Routes>
       </Router>
       <ToastContainer />
