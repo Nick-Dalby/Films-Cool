@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Router basename="/test_repository">
+      <Router basename="/Films-Cool">
         <Header />
         <Routes>
           <Route path="/" element={<Dashboard />} />
