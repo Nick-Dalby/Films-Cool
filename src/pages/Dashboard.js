@@ -8,6 +8,7 @@ import DetailsPanel from '../components/Details-Panel/DetailsPanel'
 import Search from '../components/Search/Search'
 import MoviesContainer from '../components/MoviesContainer/MoviesContainer'
 import { getMovies } from '../features/movies/moviesSlice'
+import { getUserData } from '../features/userData/userDataSlice'
 
 const Dashboard = () => {
   const { movies, isLoading } = useSelector((state) => state.movies)
@@ -25,6 +26,7 @@ const Dashboard = () => {
       navigate('/login')
     }
     dispatch(getMovies())
+    dispatch(getUserData())
   }, [user, navigate, dispatch])
 
   useEffect(() => {
