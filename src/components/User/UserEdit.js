@@ -1,9 +1,8 @@
-import { H2, H3, Container, P, Em } from './styles'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { logout, reset } from '../../features/auth/authSlice'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 

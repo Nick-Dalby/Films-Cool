@@ -1,5 +1,4 @@
 import { Container, Cover, Title, Director } from './styles'
-import { Pill } from '../../styles'
 
 const Movie = ({ movie, isLarge, pickMovie }) => {
   return (

@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { useSelector } from 'react-redux'
-import { Container, H2, MovieList } from './styles'
+import { Container, MovieList } from './styles'
 import { debounce } from 'lodash-es'
 
 import Movie from '../Movie/Movie'
