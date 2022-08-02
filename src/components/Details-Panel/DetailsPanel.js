@@ -4,10 +4,25 @@ import { Panel, P, Em, CloseWrapper, BG, Fav } from './styles'
 import { Close } from '../../styles'
 import Movie from '../Movie/Movie'
 
+import { useDispatch, useSelector } from 'react-redux'
+
+import {
+  addToFavorites,
+  removeFromFavorites,
+  setFavoriteMovies,
+} from '../../features/userData/userDataSlice'
+
 const DetailsPanel = ({ movie, closePanel, state }) => {
   const [showGenre, setShowGenre] = useState(false)
   const [showDirector, setShowDirector] = useState(false)
-  const [isFav, setIsFav] = useState(false)
+  const [isFav, setIsFav] = useState(true)
+
+  const { movies } = useSelector((state) => state.movies)
+
+  // favorite movie ids
+  const { favoriteMovieIDs } = useSelector((state) => state.userData)
+
+  const dispatch = useDispatch()
 
   const panelEl = useRef(null)
   const prevMovie = useRef(null)
@@ -19,6 +34,22 @@ const DetailsPanel = ({ movie, closePanel, state }) => {
     prevMovie.current = movie
   }, [movie, prevMovie])
 
+  // filtering fav movies
+  useEffect(() => {
+    if (movies && favoriteMovieIDs) {
+      const favMovieArray = movies.filter((movie) =>
+        favoriteMovieIDs.includes(movie._id)
+      )
+
+      if (favMovieArray.includes(movie)) {
+        setIsFav(true)
+      } else {
+        setIsFav(false)
+      }
+      dispatch(setFavoriteMovies(favMovieArray))
+    }
+  }, [dispatch, movies, favoriteMovieIDs, movie])
+
   const showGenreInfo = () => {
     setShowGenre(!showGenre)
   }
@@ -28,9 +59,13 @@ const DetailsPanel = ({ movie, closePanel, state }) => {
   }
 
   const handleFavClick = () => {
-    setIsFav(!isFav)
-    // more logic to add and remove favs from the db
-    // need to save this in state/redux too
+    if (isFav) {
+      dispatch(removeFromFavorites(movie))
+      setIsFav(false)
+    } else {
+      dispatch(addToFavorites(movie))
+      setIsFav(true)
+    }
   }
 
   return (
