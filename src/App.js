@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Router>
+      <Router basename="/test_repository">
         <Header />
         <Routes>
           <Route path="/" element={<Dashboard />} />
