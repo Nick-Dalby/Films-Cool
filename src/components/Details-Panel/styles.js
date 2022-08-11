@@ -5,7 +5,7 @@ export const Panel = styled.article`
   background: #ffe581;
   border-left: 2px solid #000;
 
-  height: calc(100vh - 82px);
+  height: calc(100vh - 80px);
   width: 660px;
 
   position: fixed;
