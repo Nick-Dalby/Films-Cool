@@ -58,7 +58,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      {/* call the funtion to set filtered movies from the input of the seach component */}
+      {/* call the function to set filtered movies from the input of the search component */}
       <Search filterMovies={filterMovies} />
       {/* pass list of filtered movies as movies prop to the movies container */}
       <MoviesContainer

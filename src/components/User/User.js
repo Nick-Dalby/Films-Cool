@@ -14,7 +14,7 @@ const User = () => {
 
   const { favoriteMovieArray } = useSelector((state) => state.userData)
 
-  const deleteAcount = () => {
+  const deleteAccount = () => {
     if (window.confirm('are you sure?')) {
       axios
         .delete(
@@ -45,7 +45,7 @@ const User = () => {
           : ''}
       </H3>
       <div className="btn-container">
-        <button className="btn" onClick={deleteAcount}>
+        <button className="btn" onClick={deleteAccount}>
           delete account
         </button>
         <Link to="/user/edit">
