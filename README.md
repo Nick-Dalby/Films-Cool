@@ -6,8 +6,7 @@ client side of a movieDB app built with React
 
 **Case-study:** [Films Cool case study](https://nickdalby.com/films-cool/)
 
-
-![screenshot](https://user-images.githubusercontent.com/99472735/195852848-2feecf16-0107-4edc-874c-9d7cd8e8df76.jpeg)
+![screenshot](https://user-images.githubusercontent.com/99472735/195856702-a79e7849-88b2-4e59-92c7-7075424b16ed.jpeg)
 
 ## How It's Made:
 
