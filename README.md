@@ -13,6 +13,7 @@ client side of a movieDB app built with React
 **Tech used:** HTML, CSS, JavaScript, React, React-Redux, [Styled-components](https://styled-components.com/), [Axios](https://axios-http.com/docs/intro)
 
 Client side of a movieDB app built with React integrated with a mongoDB backend via a [RESTAPI](https://github.com/Nick-Dalby/movieAPI)
+
 Features:
 
 - user log-in and sign-up forms
