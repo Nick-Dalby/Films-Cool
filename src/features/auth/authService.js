@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://afternoon-badlands-59179.herokuapp.com/'
+const API_URL = 'https://movieapi-production-e1fd.up.railway.app/'
 
 // Register user
 const register = async (userData) => {
